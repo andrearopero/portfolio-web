@@ -8,8 +8,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "build": "astro build && node scripts/scan-privacy.mjs",
+    "preview": "astro preview",
+    "check:publish": "node scripts/scan-privacy.mjs && node scripts/check-placeholders.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.5",
