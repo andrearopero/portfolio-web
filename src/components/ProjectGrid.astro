@@ -1,0 +1,105 @@
+---
+// Projects grid fed by the `projects` collection. Every card carries the
+// visible "Proyecto académico" label — no client or commercial framing.
+// Adding a project requires exactly one .md file and zero edits here.
+import { getCollection, render } from 'astro:content';
+
+const rawEntries = (await getCollection('projects')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title, 'es'),
+);
+
+const projects = await Promise.all(
+  rawEntries.map(async (entry) => ({
+    id: entry.id,
+    data: entry.data,
+    Content: (await render(entry)).Content,
+  })),
+);
+---
+
+<section id="projects" class="section reveal">
+  <div class="container">
+    <p class="section-kicker mono">05 / Proyectos</p>
+    <h2 class="section-title">Proyectos en curso</h2>
+    <p class="section-lede">
+      Trabajo académico en desarrollo: ejercicios reales de análisis y preparación de datos con R y
+      Python.
+    </p>
+    <div class="project-grid">
+      {
+        projects.map((project) => (
+          <article class="card project-card">
+            <span class="mono project-badge">Proyecto académico</span>
+            <h3>{project.data.title}</h3>
+            <p class="objective">{project.data.objective}</p>
+            <div class="project-body">
+              <project.Content />
+            </div>
+            <ul class="tools">
+              {project.data.tools.map((tool) => (
+                <li class="chip">{tool}</li>
+              ))}
+            </ul>
+            <p class="learning">
+              <strong>Lo que me llevo:</strong> {project.data.learning}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    margin-top: var(--space-m);
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-m);
+  }
+
+  .project-badge {
+    color: var(--accent);
+    letter-spacing: 0.12em;
+  }
+
+  .project-card h3 {
+    font-size: var(--text-lg);
+  }
+
+  .objective {
+    color: var(--muted);
+    font-size: var(--text-sm);
+  }
+
+  .project-body {
+    font-size: var(--text-sm);
+    max-width: none;
+  }
+
+  .project-body :global(p) {
+    margin: 0;
+  }
+
+  .tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .learning {
+    font-size: var(--text-sm);
+    border-top: 1px solid var(--border);
+    padding-top: var(--space-2xs);
+  }
+</style>

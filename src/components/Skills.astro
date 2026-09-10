@@ -1,0 +1,77 @@
+---
+// Skills: CV-traceable chips grouped in three blocks.
+const groups = [
+  {
+    title: 'Estadística y datos',
+    chips: [
+      'Análisis estadístico',
+      'Modelamiento estadístico',
+      'Preprocesamiento de datos',
+      'Visualización básica',
+      'Razonamiento cuantitativo',
+    ],
+  },
+  {
+    title: 'Programación',
+    chips: ['R — programación estadística', 'Python — fundamentos'],
+  },
+  {
+    title: 'Habilidades blandas',
+    chips: [
+      'Trabajo en equipo',
+      'Adaptabilidad',
+      'Atención al detalle',
+      'Responsabilidad',
+      'Pensamiento crítico',
+      'Comunicación efectiva',
+    ],
+  },
+];
+---
+
+<section id="skills" class="section reveal">
+  <div class="container">
+    <p class="section-kicker mono">03 / Habilidades</p>
+    <h2 class="section-title">Lo que traigo al trabajo</h2>
+    <div class="skill-groups">
+      {
+        groups.map((group) => (
+          <div class="skill-group card">
+            <h3>{group.title}</h3>
+            <ul>
+              {group.chips.map((chip) => (
+                <li class="chip">{chip}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .skill-groups {
+    display: grid;
+    gap: var(--space-s);
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  }
+
+  .skill-group {
+    padding: var(--space-m);
+  }
+
+  .skill-group h3 {
+    font-size: var(--text-md);
+    margin-bottom: var(--space-2xs);
+  }
+
+  .skill-group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

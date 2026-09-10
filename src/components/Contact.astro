@@ -1,0 +1,48 @@
+---
+// Contact: the mailto link is the single published channel. GitHub/LinkedIn
+// come from the confirmed profile facts. No phone, no address, no CV control.
+import { profile } from '../data/profile';
+---
+
+<section id="contact" class="section reveal">
+  <div class="container">
+    <p class="section-kicker mono">06 / Contacto</p>
+    <h2 class="section-title">Hablemos</h2>
+    <p class="section-lede contact-lede">
+      Si quieres conversar sobre datos, procesos o automatización, escríbeme por el canal
+      institucional o encuéntrame en mis perfiles profesionales.
+    </p>
+    <ul class="contact-links">
+      <li>
+        <a class="btn btn-primary" href={`mailto:${profile.email}`} aria-label="Enviar correo a Andrea Carolina Ropero Lozano">
+          {profile.email}
+        </a>
+      </li>
+      <li>
+        <a class="btn btn-ghost" href={profile.links.github} target="_blank" rel="noopener noreferrer" aria-label="Perfil de GitHub de Andrea Carolina Ropero Lozano (se abre en una pestaña nueva)">
+          GitHub
+        </a>
+      </li>
+      <li>
+        <a class="btn btn-ghost" href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Perfil de LinkedIn de Andrea Carolina Ropero Lozano (se abre en una pestaña nueva)">
+          LinkedIn
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .contact-lede {
+    margin-bottom: var(--space-m);
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

@@ -255,17 +255,18 @@ a:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Scroll reveal — hidden state applies ONLY when JS is present (html.js).
-   Without JS every element stays visible (JS-off visibility requirement).
+   Scroll reveal — the hidden state applies ONLY after the reveal script arms
+   the document (html[data-reveal-armed]). Without JS (or if the script fails)
+   every element stays visible (JS-off visibility requirement).
    -------------------------------------------------------------------------- */
 
-html.js .reveal {
+[data-reveal-armed] .reveal {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity var(--speed) var(--ease), transform var(--speed) var(--ease);
 }
 
-html.js .reveal.is-visible {
+[data-reveal-armed] .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
@@ -279,7 +280,7 @@ html.js .reveal.is-visible {
     scroll-behavior: auto;
   }
 
-  html.js .reveal {
+  [data-reveal-armed] .reveal {
     opacity: 1;
     transform: none;
     transition: none;
