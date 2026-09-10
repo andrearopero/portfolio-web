@@ -1,0 +1,9 @@
+# CV contains prohibited personal data (phone + references) — never enters git history
+HDV_AndreaRopero.pdf
+node_modules/
+dist/
+.astro/
+
+# Local workspace scaffolding — project planning artifacts, not site source
+.atl/
+openspec/

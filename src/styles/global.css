@@ -1,0 +1,295 @@
+/* ==========================================================================
+   portfolio-web — design tokens & base styles
+   Site copy is Spanish; identifiers and comments stay in English.
+
+   90/10 accent discipline — the ONLY allowed accent surfaces:
+     - text links (color)
+     - skill chips (text + soft tinted background)
+     - section numbering / kickers (color)
+     - hover & focus-visible states (color, border, underline)
+     - primary CTA button (filled) — the single highlight per viewport
+   Everything else is neutral surface. No accent gradients or large fills.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Layout */
+  --max-width: 68rem;
+  --measure: 65ch;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --text-xs: clamp(0.75rem, 0.71rem + 0.2vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.84rem + 0.25vw, 0.9375rem);
+  --text-md: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.02rem + 0.55vw, 1.375rem);
+  --text-xl: clamp(1.375rem, 1.18rem + 0.9vw, 1.875rem);
+  --text-2xl: clamp(1.75rem, 1.35rem + 1.7vw, 2.625rem);
+  --text-3xl: clamp(2.25rem, 1.55rem + 3vw, 3.625rem);
+
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6.5rem;
+
+  /* Light palette (default theme) */
+  --bg: #FAF9F6;
+  --surface: #FFFFFF;
+  --border: #E4E1D8;
+  --ink: #212724;
+  --ink-strong: #121614;
+  --muted: #5A6560;
+
+  /* Accent — Andean Emerald. 4.76:1 on --bg (WCAG AA >= 4.5:1) */
+  --accent: #0E7C7B;
+  --accent-strong: #0A5F5E;
+  --accent-soft: rgba(14, 124, 123, 0.09);
+  --on-accent: #FFFFFF;
+
+  --shadow-card: 0 1px 2px rgba(18, 22, 20, 0.05), 0 8px 24px rgba(18, 22, 20, 0.07);
+
+  --radius-s: 6px;
+  --radius-m: 10px;
+
+  --speed: 380ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #101917;
+  --surface: #16211F;
+  --border: #273230;
+  --ink: #E9EEEC;
+  --ink-strong: #F7FAF9;
+  --muted: #9FB0AA;
+
+  /* Lightened accent for dark surfaces. 8.88:1 on --bg (WCAG AA >= 4.5:1) */
+  --accent: #4CC9C0;
+  --accent-strong: #77DED8;
+  --accent-soft: rgba(76, 201, 192, 0.11);
+  --on-accent: #0B2B29;
+}
+
+/* --------------------------------------------------------------------------
+   Reset & base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--ink-strong);
+  line-height: 1.15;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Shared rhythm ---------------------------------------------------------- */
+
+.container {
+  width: min(100% - 2 * var(--space-s), var(--max-width));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-xl);
+}
+
+.section + .section {
+  padding-top: 0;
+}
+
+.section-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: var(--space-2xs);
+}
+
+.section-title {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-m);
+}
+
+.section-lede {
+  color: var(--muted);
+  max-width: var(--measure);
+}
+
+/* Skip link (visible only on keyboard focus) ------------------------------- */
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: -100vw;
+  top: 0;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-body);
+  font-weight: 600;
+  padding: var(--space-2xs) var(--space-s);
+  border-radius: 0 0 var(--radius-s) 0;
+  z-index: 50;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  position: fixed;
+  inset-inline-start: 0;
+}
+
+/* Buttons ------------------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  padding: 0.65em 1.3em;
+  border-radius: var(--radius-s);
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--speed) var(--ease),
+    border-color var(--speed) var(--ease), color var(--speed) var(--ease);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-strong);
+  color: var(--on-accent);
+}
+
+.btn-ghost {
+  border-color: var(--border);
+  color: var(--ink-strong);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Chips -------------------------------------------------------------------- */
+
+.chip {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: 0.25em 0.85em;
+}
+
+/* Monospaced facts (dates, years, badges) ---------------------------------- */
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+}
+
+/* Card surface ------------------------------------------------------------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-card);
+}
+
+/* --------------------------------------------------------------------------
+   Scroll reveal — hidden state applies ONLY when JS is present (html.js).
+   Without JS every element stays visible (JS-off visibility requirement).
+   -------------------------------------------------------------------------- */
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--speed) var(--ease), transform var(--speed) var(--ease);
+}
+
+html.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — kill all animation and keep content fully visible.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
