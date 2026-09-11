@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Andrea Carolina Ropero Lozano — Estadística · Automatización Industrial</title>
+    <meta
+      name="description"
+      content="Andrea Carolina Ropero Lozano, estadística de la Universidad Nacional de Colombia: análisis cuantitativo, modelamiento estadístico y datos aplicados a la automatización industrial."
+    />
+    <script>
+      // No-FOUC theme bootstrap: resolves the theme pre-paint, before any
+      // render. Stored choice wins; otherwise honor prefers-color-scheme.
+      (() => {
+        const root = document.documentElement;
+        let stored = null;
+        try {
+          stored = localStorage.getItem('theme');
+        } catch {
+          // Storage unavailable (e.g. hardened privacy settings) — fall through.
+        }
+        const dark =
+          stored === 'dark' ||
+          (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        root.dataset.theme = dark ? 'dark' : 'light';
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

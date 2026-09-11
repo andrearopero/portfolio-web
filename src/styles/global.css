@@ -2,13 +2,31 @@
    portfolio-web — design tokens & base styles
    Site copy is Spanish; identifiers and comments stay in English.
 
-   90/10 accent discipline — the ONLY allowed accent surfaces:
+   Vibrant violet–fuchsia palette (user decision 2026-09-11, supersedes
+   Andean Emerald). Accent discipline: neutrals dominate ~70–80% of visible
+   surface; accents are allowed ONLY on:
      - text links (color)
      - skill chips (text + soft tinted background)
      - section numbering / kickers (color)
      - hover & focus-visible states (color, border, underline)
-     - primary CTA button (filled) — the single highlight per viewport
-   Everything else is neutral surface. No accent gradients or large fills.
+     - timeline markers
+     - primary CTA button (filled)
+     - at most ONE violet→fuchsia gradient highlight per viewport
+   Everything else is neutral surface.
+
+   Contrast audit (WCAG AA, computed WCAG 2.x relative luminance):
+     LIGHT theme (bg #F6F5FC / surface #FFFFFF)
+       violet  #7C3AED  5.26 / 5.70 :1  (AA body ✓)
+       violet-strong #6D28D9  6.56 / 7.10 :1
+       fuchsia #C2186B  5.33 / 5.77 :1  (AA body ✓; #DB2777 raw = 4.24 on bg,
+                                         below 4.5 — darkened for text use)
+       amber-as-text #B45309  4.64 / 5.02 :1  (raw #F59E0B = 1.98 — NEVER use
+                                         raw amber as text on light bg)
+     DARK theme (bg #111C2E / surface #1A2740)
+       violet  #A78BFA  6.28 / 5.48 :1  (brightened variant; raw #7C3AED = 3.00)
+       fuchsia #F472B6  6.45 / 5.63 :1  (raw #DB2777 = 3.72)
+       amber   #FBBF24 10.23 / 8.93 :1  (raw #F59E0B = 7.95, also passes)
+       ink 14.17, muted 7.67 :1 on bg
    ========================================================================== */
 
 :root {
@@ -40,21 +58,31 @@
   --space-xl: 4rem;
   --space-2xl: 6.5rem;
 
-  /* Light palette (default theme) */
-  --bg: #FAF9F6;
+  /* Palette — violet / fuchsia / amber (base values) */
+  --accent: #7C3AED;        /* electric violet — primary accent */
+  --accent-2: #DB2777;      /* fuchsia — secondary accent (decorative/gradient use) */
+  --accent-3: #F59E0B;      /* amber — tertiary support (large/decorative use) */
+
+  /* Decorative gradient token — the single allowed violet→fuchsia highlight */
+  --gradient-accent: linear-gradient(100deg, #7C3AED 0%, #DB2777 100%);
+
+  /* Light theme: soft lavender-tinted background, white surfaces */
+  --bg: #F6F5FC;
   --surface: #FFFFFF;
-  --border: #E4E1D8;
-  --ink: #212724;
-  --ink-strong: #121614;
-  --muted: #5A6560;
+  --border: #E3E1F0;
+  --ink: #23263B;
+  --ink-strong: #14162A;
+  --muted: #5D6480;
 
-  /* Accent — Andean Emerald. 4.76:1 on --bg (WCAG AA >= 4.5:1) */
-  --accent: #0E7C7B;
-  --accent-strong: #0A5F5E;
-  --accent-soft: rgba(14, 124, 123, 0.09);
-  --on-accent: #FFFFFF;
+  /* Text-safe accent variants (see contrast audit above) */
+  --accent-text: #7C3AED;       /* 5.26:1 on bg — links, chips, kickers */
+  --accent-strong: #6D28D9;     /* 6.56:1 on bg — hovers */
+  --accent-2-text: #C2186B;     /* 5.33:1 on bg — fuchsia text variant */
+  --accent-3-text: #B45309;     /* 4.64:1 on bg — amber text variant */
+  --accent-soft: rgba(124, 58, 237, 0.08);
+  --on-accent: #FFFFFF;         /* 5.70:1 on #7C3AED */
 
-  --shadow-card: 0 1px 2px rgba(18, 22, 20, 0.05), 0 8px 24px rgba(18, 22, 20, 0.07);
+  --shadow-card: 0 1px 2px rgba(20, 22, 42, 0.05), 0 8px 24px rgba(20, 22, 42, 0.07);
 
   --radius-s: 6px;
   --radius-m: 10px;
@@ -66,18 +94,26 @@
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --bg: #101917;
-  --surface: #16211F;
-  --border: #273230;
-  --ink: #E9EEEC;
-  --ink-strong: #F7FAF9;
-  --muted: #9FB0AA;
+  /* Dark theme: deep night-blue background (NOT pure black) */
+  --bg: #111C2E;
+  --surface: #1A2740;
+  --border: #2B3A57;
+  --ink: #E6EAF2;
+  --ink-strong: #F5F7FC;
+  --muted: #A3AEC6;
 
-  /* Lightened accent for dark surfaces. 8.88:1 on --bg (WCAG AA >= 4.5:1) */
-  --accent: #4CC9C0;
-  --accent-strong: #77DED8;
-  --accent-soft: rgba(76, 201, 192, 0.11);
-  --on-accent: #0B2B29;
+  /* Brightened accent variants for dark surfaces (see contrast audit above) */
+  --accent-text: #A78BFA;       /* 6.28:1 on bg */
+  --accent-strong: #C4B5FD;     /* hovers */
+  --accent-2-text: #F472B6;     /* 6.45:1 on bg */
+  --accent-3-text: #FBBF24;     /* 10.23:1 on bg */
+  --accent-soft: rgba(167, 139, 250, 0.12);
+  --on-accent: #FFFFFF;         /* on #A78BFA as filled button: use dark ink? No —
+                                   filled CTA in dark uses gradient; see .btn-primary */
+
+  --gradient-accent: linear-gradient(100deg, #A78BFA 0%, #F472B6 100%);
+
+  --shadow-card: 0 1px 2px rgba(3, 8, 20, 0.35), 0 8px 24px rgba(3, 8, 20, 0.4);
 }
 
 /* --------------------------------------------------------------------------
@@ -121,7 +157,7 @@ p {
 }
 
 a {
-  color: var(--accent);
+  color: var(--accent-text);
   text-underline-offset: 0.2em;
 }
 
@@ -130,7 +166,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-text);
   outline-offset: 2px;
 }
 
@@ -153,7 +189,7 @@ a:hover {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: 0.14em;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: var(--space-2xs);
 }
 
@@ -205,24 +241,27 @@ a:hover {
     border-color var(--speed) var(--ease), color var(--speed) var(--ease);
 }
 
+/* Primary CTA carries the single violet→fuchsia gradient highlight.
+   White on the gradient midpoint (~#AC5CB3) ≈ 3.6:1 → large/bold button text
+   meets AA large-text; body-size uses the strong ink fallback below. */
 .btn-primary {
-  background: var(--accent);
-  color: var(--on-accent);
+  background: var(--gradient-accent);
+  color: #FFFFFF;
 }
 
 .btn-primary:hover {
-  background: var(--accent-strong);
-  color: var(--on-accent);
+  filter: brightness(1.08);
 }
 
 .btn-ghost {
   border-color: var(--border);
   color: var(--ink-strong);
+  background: transparent;
 }
 
 .btn-ghost:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--accent-text);
+  color: var(--accent-text);
 }
 
 /* Chips -------------------------------------------------------------------- */
@@ -231,7 +270,7 @@ a:hover {
   display: inline-block;
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--accent);
+  color: var(--accent-text);
   background: var(--accent-soft);
   border-radius: 999px;
   padding: 0.25em 0.85em;
@@ -252,6 +291,47 @@ a:hover {
   border: 1px solid var(--border);
   border-radius: var(--radius-m);
   box-shadow: var(--shadow-card);
+}
+
+/* Placeholder chrome (S1 only — removed when real components land in S2) --- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: flex-end;
+  padding-block: var(--space-2xs);
+}
+
+.site-header button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  padding: 0.4em 0.8em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+
+.site-header button:hover {
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding-block: var(--space-m);
+  color: var(--muted);
 }
 
 /* --------------------------------------------------------------------------
