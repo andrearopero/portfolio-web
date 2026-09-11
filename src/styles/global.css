@@ -11,7 +11,8 @@
      - hover & focus-visible states (color, border, underline)
      - timeline markers
      - primary CTA button (filled)
-     - at most ONE violet→fuchsia gradient highlight per viewport
+     - the hero name (Hero.module.css) carries the ONE violet→fuchsia
+       gradient highlight allowed per viewport
    Everything else is neutral surface.
 
    Contrast audit (WCAG AA, computed WCAG 2.x relative luminance):
@@ -241,12 +242,14 @@ a:hover {
     border-color var(--speed) var(--ease), color var(--speed) var(--ease);
 }
 
-/* Primary CTA carries the single violet→fuchsia gradient highlight.
-   White on the gradient midpoint (~#AC5CB3) ≈ 3.6:1 → large/bold button text
-   meets AA large-text; body-size uses the strong ink fallback below. */
+/* Primary CTA: solid violet fill (white on #7C3AED = 5.70:1 — AA body-size,
+   better than the former gradient midpoint's 3.6:1). Since S2 the single
+   violet→fuchsia gradient highlight per viewport is the hero name
+   (Hero.module.css); keeping the CTA solid preserves the one-gradient-per-
+   viewport accent discipline. */
 .btn-primary {
-  background: var(--gradient-accent);
-  color: #FFFFFF;
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 .btn-primary:hover {
@@ -291,47 +294,6 @@ a:hover {
   border: 1px solid var(--border);
   border-radius: var(--radius-m);
   box-shadow: var(--shadow-card);
-}
-
-/* Placeholder chrome (S1 only — removed when real components land in S2) --- */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg);
-}
-
-.site-header .container {
-  display: flex;
-  justify-content: flex-end;
-  padding-block: var(--space-2xs);
-}
-
-.site-header button {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3xs);
-  padding: 0.4em 0.8em;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-s);
-  background: var(--surface);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  cursor: pointer;
-}
-
-.site-header button:hover {
-  border-color: var(--accent-text);
-  color: var(--accent-text);
-}
-
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding-block: var(--space-m);
-  color: var(--muted);
 }
 
 /* --------------------------------------------------------------------------

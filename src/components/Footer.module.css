@@ -1,0 +1,37 @@
+/* Footer styles — ported from Footer.astro's scoped <style>. */
+
+.siteFooter {
+  border-top: 1px solid var(--border);
+  padding-block: var(--space-l);
+}
+
+.footerInner {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.footerName {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  color: var(--ink-strong);
+}
+
+.navList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs) var(--space-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navLink {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: var(--accent-text);
+  text-decoration: underline;
+}

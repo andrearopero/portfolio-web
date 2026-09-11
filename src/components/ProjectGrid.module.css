@@ -1,0 +1,75 @@
+/* Project grid styles — ported from ProjectGrid.astro's scoped <style>.
+   Publication-card additions: meta line, highlighted author, DOI link. */
+
+.projectGrid {
+  display: grid;
+  gap: var(--space-m);
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  margin-top: var(--space-m);
+}
+
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-m);
+}
+
+.projectBadge {
+  color: var(--accent-text);
+  letter-spacing: 0.12em;
+}
+
+.projectCard h3 {
+  font-size: var(--text-lg);
+}
+
+.objective {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.projectBody {
+  font-size: var(--text-sm);
+  max-width: none;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.learning {
+  font-size: var(--text-sm);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-2xs);
+}
+
+/* Publication card ---------------------------------------------------------- */
+
+.publicationMeta {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.authors {
+  font-size: var(--text-sm);
+}
+
+/* Fourth author, human-confirmed: visibly highlighted with the fuchsia
+   text variant (AA on both themes — see the contrast audit in global.css). */
+.authorHighlight {
+  color: var(--accent-2-text);
+  font-weight: 600;
+}
+
+.doiLink {
+  font-size: var(--text-sm);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-2xs);
+  margin-top: auto;
+}

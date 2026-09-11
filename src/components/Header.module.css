@@ -1,0 +1,95 @@
+/* Header styles — ported from Header.astro's scoped <style>.
+   Text/hover colors use the contrast-audited --accent-text token (the amended
+   palette's text-safe variant) instead of raw --accent. */
+
+.siteHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2xs);
+  padding-block: var(--space-2xs);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  color: var(--ink-strong);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-3xs) var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navLink {
+  color: var(--ink);
+  font-size: var(--text-xs);
+  text-decoration: none;
+  padding-block: 0.35em;
+}
+
+.navLink:hover {
+  color: var(--accent-text);
+  text-decoration: underline;
+}
+
+.themeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.themeToggle:hover {
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
+
+/* Show the icon that matches the active theme. */
+.iconMoon {
+  display: none;
+}
+
+:global([data-theme='dark']) .iconMoon {
+  display: block;
+}
+
+:global([data-theme='dark']) .iconSun {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .headerInner {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+
+  .brand {
+    max-width: 14rem;
+  }
+}

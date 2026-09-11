@@ -1,0 +1,37 @@
+/* Hero styles — ported from Hero.astro's scoped <style>. */
+
+.hero {
+  padding-block: var(--space-2xl) var(--space-xl);
+}
+
+/* The single violet→fuchsia gradient highlight per viewport: the hero name
+   (large display text, gradient endpoints ≥ 3:1 large-text AA in both
+   themes — see the contrast audit in global.css). The ink fallback outside
+   @supports keeps the name visible where background-clip: text is not
+   supported — same fail-visible spirit as the reveal gate. */
+.heroName {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-s);
+}
+
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .heroName {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.heroLede {
+  color: var(--muted);
+  font-size: var(--text-lg);
+  max-width: var(--measure);
+  margin-bottom: var(--space-l);
+}
+
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}

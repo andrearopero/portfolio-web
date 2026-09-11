@@ -1,0 +1,63 @@
+/* Education timeline styles — ported from EducationTimeline.astro's scoped
+   <style>; the thesis sub-line is new (BSc thesis title requirement). */
+
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-inline-start: 2px solid var(--border);
+}
+
+.timelineItem {
+  position: relative;
+  padding-inline-start: var(--space-l);
+  padding-block-end: var(--space-s);
+}
+
+/* Timeline marker — decorative accent use (allowed element type). */
+.timelineItem::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 1.4rem;
+  inset-inline-start: -6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.timelineCard {
+  padding: var(--space-s) var(--space-m);
+}
+
+.timelineHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3xs) var(--space-s);
+}
+
+.timelineHead h3 {
+  font-size: var(--text-md);
+}
+
+.statusBadge,
+.period {
+  color: var(--accent-text);
+  white-space: nowrap;
+}
+
+.institution {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+/* Styled sub-line: the confirmed thesis title, exactly as confirmed — no
+   invented co-authors, dates, or links. */
+.thesisTitle {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-style: italic;
+  margin-top: var(--space-3xs);
+}

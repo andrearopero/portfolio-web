@@ -1,0 +1,7 @@
+/* About styles — ported from About.astro's scoped <style>. */
+
+.aboutBody {
+  max-width: var(--measure);
+  display: grid;
+  gap: var(--space-m);
+}

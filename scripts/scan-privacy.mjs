@@ -2,11 +2,18 @@
 // Build-time privacy gate (portfolio-privacy spec).
 //
 // Walks dist/** and fails (exit 1, naming file + match) on any prohibited
-// string: the phone number (+ de-spaced / de-dashed variants), the professor
-// reference-block tokens and email, the reference phone number, the personal
-// email, the CV filename, and any CV download control. Zero dependencies,
-// Node >= 18. This script is a read-only walker with fixed paths: no user
-// input, no shell composition (threat matrix: build scripts).
+// string: the professor reference-block tokens and email, the reference
+// phone number, the personal email, the CV filename, and any CV download
+// control. Zero dependencies, Node >= 18. This script is a read-only walker
+// with fixed paths: no user input, no shell composition (threat matrix:
+// build scripts).
+//
+// Privacy amendment 2026-09-11: the professional phone +57 322 799 9411 is
+// now an approved secondary contact channel, and the peer-reviewed
+// publication legitimately contains the author names that share tokens with
+// the reference block ("Bru", "Cordero", "Osnamir", "Elias"). Those six
+// needles were removed; the reference block itself stays hard-protected via
+// its email and its own phone number.
 
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
@@ -33,12 +40,6 @@ const TEXT_EXTENSIONS = new Set([
 // spaces and dashes removed, so de-spaced / de-dashed phone variants are
 // caught too.
 const NEEDLES = [
-  { label: 'phone "+57 322 799 9411"', re: /\+57[\s-]*322[\s-]*799[\s-]*9411/i },
-  { label: 'phone de-spaced/de-dashed "573227999411"', norm: '573227999411' },
-  { label: 'reference token "Bru"', re: /\bBru\b/ },
-  { label: 'reference token "Cordero"', re: /\bCordero\b/ },
-  { label: 'reference token "Osnamir"', re: /\bOsnamir\b/ },
-  { label: 'reference token "Elias"', re: /\bElias\b/ },
   { label: 'reference email "oebruc@unal.edu.co"', re: /oebruc@unal\.edu\.co/i },
   { label: 'reference phone "(+57) 316 5000"', re: /\(\s*\+57\s*\)[\s-]*316[\s-]*5000/i },
   { label: 'reference phone "316 5000"', re: /316[\s-]*5000/ },

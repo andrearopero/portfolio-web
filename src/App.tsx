@@ -1,23 +1,21 @@
 // Site copy is Spanish; identifiers and comments stay in English.
-
+//
+// Single-page composition: skip link, sticky header, the seven anchored
+// sections, and the footer. Section ids are stable anchors — unchanged from
+// the S1 shell (#hero #about #skills #education #projects #contact).
+// useRevealOnScroll runs ONCE here; useTheme lives inside Header only.
+import About from './components/About';
+import Contact from './components/Contact';
+import EducationTimeline from './components/EducationTimeline';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import ProjectGrid from './components/ProjectGrid';
+import Skills from './components/Skills';
 import { useRevealOnScroll } from './hooks/useRevealOnScroll';
-import { useTheme } from './hooks/useTheme';
-
-// S1 placeholder shell — real components (Header, Hero, …, Footer) land in S2.
-// Section ids are stable anchors; the ThemeToggle exercises useTheme until the
-// real Header arrives.
-const SECTIONS = [
-  { id: 'hero', label: 'Inicio' },
-  { id: 'about', label: 'Sobre mí' },
-  { id: 'skills', label: 'Habilidades' },
-  { id: 'education', label: 'Formación' },
-  { id: 'projects', label: 'Proyectos' },
-  { id: 'contact', label: 'Contacto' },
-] as const;
 
 export default function App() {
   useRevealOnScroll();
-  const { theme, toggle } = useTheme();
 
   return (
     <>
@@ -25,31 +23,18 @@ export default function App() {
         Saltar al contenido
       </a>
 
-      <header className="site-header">
-        <div className="container">
-          <button type="button" onClick={toggle} aria-label="Cambiar tema">
-            {theme === 'dark' ? '🌙' : '☀️'} Tema: {theme}
-          </button>
-        </div>
-      </header>
+      <Header />
 
       <main id="main">
-        {SECTIONS.map((section) => (
-          <section key={section.id} id={section.id} className="section reveal">
-            <div className="container">
-              <p className="section-kicker">{section.id}</p>
-              <h2 className="section-title">{section.label}</h2>
-              <p className="section-lede">Sección de ejemplo (los componentes reales llegan en S2).</p>
-            </div>
-          </section>
-        ))}
+        <Hero />
+        <About />
+        <Skills />
+        <EducationTimeline />
+        <ProjectGrid />
+        <Contact />
       </main>
 
-      <footer className="site-footer">
-        <div className="container">
-          <p className="mono">© {new Date().getFullYear()} — placeholder footer</p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,25 @@
+/* Skills styles — ported from Skills.astro's scoped <style>. */
+
+.skillGroups {
+  display: grid;
+  gap: var(--space-s);
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+}
+
+.skillGroup {
+  padding: var(--space-m);
+}
+
+.skillGroup h3 {
+  font-size: var(--text-md);
+  margin-bottom: var(--space-2xs);
+}
+
+.skillGroup ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
