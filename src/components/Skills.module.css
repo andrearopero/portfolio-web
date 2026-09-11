@@ -1,4 +1,4 @@
-/* Skills styles — ported from Skills.astro's scoped <style>. */
+/* Skills styles — ported from the former Astro component's scoped <style>. */
 
 .skillGroups {
   display: grid;

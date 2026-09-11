@@ -1,4 +1,4 @@
-/* Footer styles — ported from Footer.astro's scoped <style>. */
+/* Footer styles — ported from the former Astro component's scoped <style>. */
 
 .siteFooter {
   border-top: 1px solid var(--border);

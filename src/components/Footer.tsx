@@ -1,5 +1,5 @@
 // Footer: full name, current year (render time), small anchor nav.
-// Ported 1:1 from Footer.astro.
+// Ported 1:1 from the former Astro component.
 import { profile } from '../data/profile';
 import styles from './Footer.module.css';
 

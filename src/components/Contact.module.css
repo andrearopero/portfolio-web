@@ -1,4 +1,4 @@
-/* Contact styles — ported from Contact.astro's scoped <style>. */
+/* Contact styles — ported from the former Astro component's scoped <style>. */
 
 .contactLede {
   margin-bottom: var(--space-m);

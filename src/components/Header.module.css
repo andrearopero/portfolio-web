@@ -1,4 +1,4 @@
-/* Header styles — ported from Header.astro's scoped <style>.
+/* Header styles — ported from the former Astro component's scoped <style>.
    Text/hover colors use the contrast-audited --accent-text token (the amended
    palette's text-safe variant) instead of raw --accent. */
 

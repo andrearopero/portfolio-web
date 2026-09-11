@@ -1,4 +1,4 @@
-/* Hero styles — ported from Hero.astro's scoped <style>. */
+/* Hero styles — ported from the former Astro component's scoped <style>. */
 
 .hero {
   padding-block: var(--space-2xl) var(--space-xl);

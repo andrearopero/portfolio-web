@@ -1,5 +1,6 @@
 // Header: sticky top bar — brand link, anchor nav, and the theme toggle.
-// Ported 1:1 from Header.astro; useTheme replaces the inline toggle script.
+// Ported 1:1 from the former Astro component; useTheme replaces the inline
+// toggle script.
 import { profile } from '../data/profile';
 import { useTheme } from '../hooks/useTheme';
 import styles from './Header.module.css';

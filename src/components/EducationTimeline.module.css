@@ -1,5 +1,5 @@
-/* Education timeline styles — ported from EducationTimeline.astro's scoped
-   <style>; the thesis sub-line is new (BSc thesis title requirement). */
+/* Education timeline styles — ported from the former Astro component's
+   scoped <style>; the thesis sub-line is new (BSc thesis title requirement). */
 
 .timeline {
   margin: 0;

@@ -6,7 +6,7 @@ Documento operativo para el momento de publicar. Reglas del cambio
 ## Comandos de verificación (en orden)
 
 ```bash
-npm run build          # astro build + escaneo de privacidad (falla con datos prohibidos)
+npm run build          # tsc + vite build + escaneo de privacidad (falla con datos prohibidos)
 npm run check:publish  # escaneo de privacidad + marcadores TODO-URL (bloquea si quedan)
 ```
 
@@ -45,8 +45,8 @@ en el código fuente — nunca se inventa ni se adivina una URL.
 
 - `TODO-URL-*` en el código fuente bloquea `npm run check:publish` hasta
   resolverse. Es la señal de "enlace pendiente de confirmar".
-- Agregar un proyecto o una entrada de formación = un archivo `.md` nuevo en
-  `src/content/projects/` o `src/content/education/`, sin editar componentes.
+- Agregar un proyecto o una entrada de formación = una entrada nueva en
+  `src/data/projects.ts` o `src/data/education.ts`, sin editar componentes.
 
 ## Verificación manual antes de publicar
 

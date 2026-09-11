@@ -1,5 +1,6 @@
 // Hero: full name, one-line positioning, and the two anchor CTAs.
-// Ported 1:1 from Hero.astro. The hero name carries the single violet→fuchsia
+// Ported 1:1 from the former Astro component. The hero name carries the
+// single violet→fuchsia
 // gradient highlight allowed per viewport (--gradient-accent token).
 import { profile } from '../data/profile';
 import styles from './Hero.module.css';

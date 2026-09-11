@@ -1,4 +1,4 @@
-/* About styles — ported from About.astro's scoped <style>. */
+/* About styles — ported from the former Astro component's scoped <style>. */
 
 .aboutBody {
   max-width: var(--measure);

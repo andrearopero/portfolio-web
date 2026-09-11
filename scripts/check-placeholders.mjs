@@ -15,7 +15,6 @@ const SCAN_DIRS = ['src', 'scripts', 'docs'];
 const MARKER_RE = /TODO-URL-[A-Z0-9_-]+/g;
 
 const TEXT_EXTENSIONS = new Set([
-  '.astro',
   '.ts',
   '.tsx',
   '.js',

@@ -1,5 +1,5 @@
-/* Project grid styles — ported from ProjectGrid.astro's scoped <style>.
-   Publication-card additions: meta line, highlighted author, DOI link. */
+/* Project grid styles — ported from the former Astro component's scoped
+   <style>. Publication-card additions: meta line, highlighted author, DOI link. */
 
 .projectGrid {
   display: grid;

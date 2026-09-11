@@ -1,5 +1,6 @@
 // Skills: CV-traceable chips grouped in three blocks (stats/data, programming,
-// soft skills). The groups const stays in the component, as in Skills.astro.
+// soft skills). The groups const stays in the component, as in the former
+// Astro component.
 // Each group carries a chip tone (violet / fuchsia / amber) — colorful but
 // AA-legible via the contrast-audited tint tokens in global.css.
 import styles from './Skills.module.css';
