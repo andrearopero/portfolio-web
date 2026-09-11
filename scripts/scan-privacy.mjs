@@ -14,6 +14,12 @@
 // the reference block ("Bru", "Cordero", "Osnamir", "Elias"). Those six
 // needles were removed; the reference block itself stays hard-protected via
 // its email and its own phone number.
+//
+// S3 completion: the cédula, birth date/place, and residential address
+// needles were absent from the original file; the amended portfolio-privacy
+// spec requires every non-approved PII class to hard-fail the build, so they
+// are explicit needles now (verified: none of these tokens occur in
+// legitimate site content — see scripts/test-privacy-gates.mjs).
 
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
@@ -40,11 +46,23 @@ const TEXT_EXTENSIONS = new Set([
 // spaces and dashes removed, so de-spaced / de-dashed phone variants are
 // caught too.
 const NEEDLES = [
+  // Reference block (professor references from the CV) — hard-protected.
   { label: 'reference email "oebruc@unal.edu.co"', re: /oebruc@unal\.edu\.co/i },
   { label: 'reference phone "(+57) 316 5000"', re: /\(\s*\+57\s*\)[\s-]*316[\s-]*5000/i },
   { label: 'reference phone "316 5000"', re: /316[\s-]*5000/ },
   { label: 'reference phone de-spaced "3165000"', norm: '3165000' },
+  // Personal identity data.
   { label: 'personal email "andrearopero1520@gmail.com"', re: /andrearopero1520@gmail\.com/i },
+  { label: 'cédula "1003239904"', re: /1003239904/ },
+  { label: 'birth date "2003-04-15"', re: /2003\s*[-/.]\s*04\s*[-/.]\s*15/ },
+  { label: 'birth date de-dashed "20030415"', norm: '20030415' },
+  { label: 'birth place "VALLEDUPAR"', re: /valledupar/i },
+  // Residential address.
+  { label: 'address "calle #4-17"', re: /calle\s*#?\s*4\s*-\s*17/i },
+  { label: 'address de-spaced "calle#417"', norm: 'calle#417' },
+  { label: 'neighborhood "El Millón"', re: /el\s+mill[oó]n/i },
+  { label: 'neighborhood "SAN DIEGO"', re: /san\s+diego/i },
+  // CV file / download markers.
   { label: 'CV filename "HDV_AndreaRopero"', re: /HDV_AndreaRopero/ },
   { label: 'CV download control "Descargar CV"', re: /Descargar\s+CV/i },
 ];

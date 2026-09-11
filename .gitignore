@@ -1,11 +1,17 @@
-# CV contains prohibited personal data (phone + references) — never enters git history
-HDV_AndreaRopero.pdf
+# PDFs at the repo root contain prohibited personal data (CV, CvLAC) and
+# must never enter git history. Safe: no PDF is tracked (verified via
+# git ls-files before adding this pattern).
+*.pdf
 node_modules/
 dist/
 .astro/
 
 # TypeScript incremental build cache
 *.tsbuildinfo
+
+# NOTE: run.sh is intentionally NOT ignored — it is tracked source (the
+# deploy helper, updated in S4). Ignoring a tracked file is a no-op and
+# would only mislead.
 
 # Local workspace scaffolding — project planning artifacts, not site source
 .atl/

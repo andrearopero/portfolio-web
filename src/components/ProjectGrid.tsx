@@ -42,7 +42,7 @@ export default function ProjectGrid() {
           R y Python.
         </p>
         <div className={styles.projectGrid}>
-          <article className={`card ${styles.projectCard}`}>
+          <article className={`card ${styles.projectCard} ${styles.publicationCard}`}>
             <span className={`mono ${styles.projectBadge}`}>Publicación arbitrada</span>
             <h3>{publication.title}</h3>
             <p className={styles.publicationMeta}>

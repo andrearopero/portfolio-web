@@ -81,6 +81,8 @@
   --accent-2-text: #C2186B;     /* 5.33:1 on bg — fuchsia text variant */
   --accent-3-text: #B45309;     /* 4.64:1 on bg — amber text variant */
   --accent-soft: rgba(124, 58, 237, 0.08);
+  --accent-2-soft: rgba(219, 39, 119, 0.1);   /* chip tint: #C2186B ≈ 5.0:1 */
+  --accent-3-soft: rgba(245, 158, 11, 0.1);   /* chip tint: #B45309 ≈ 4.7:1 */
   --on-accent: #FFFFFF;         /* 5.70:1 on #7C3AED */
 
   --shadow-card: 0 1px 2px rgba(20, 22, 42, 0.05), 0 8px 24px rgba(20, 22, 42, 0.07);
@@ -108,7 +110,11 @@
   --accent-strong: #C4B5FD;     /* hovers */
   --accent-2-text: #F472B6;     /* 6.45:1 on bg */
   --accent-3-text: #FBBF24;     /* 10.23:1 on bg */
-  --accent-soft: rgba(167, 139, 250, 0.12);
+  /* Tint alphas kept low so accent text over the tinted surface stays AA
+     (violet/fuchsia at 0.1 ≈ 4.6–4.7:1, amber at 0.12 ≈ 6.9:1). */
+  --accent-soft: rgba(167, 139, 250, 0.1);
+  --accent-2-soft: rgba(244, 114, 182, 0.1);
+  --accent-3-soft: rgba(251, 191, 36, 0.12);
   --on-accent: #FFFFFF;         /* on #A78BFA as filled button: use dark ink? No —
                                    filled CTA in dark uses gradient; see .btn-primary */
 
@@ -277,6 +283,19 @@ a:hover {
   background: var(--accent-soft);
   border-radius: 999px;
   padding: 0.25em 0.85em;
+}
+
+/* Colorful chip variants — tinted background + text-safe accent variant,
+   both contrast-audited per theme (see token comments). Same radius and
+   padding as the default chip: one chip language, three accents. */
+.chip-fuchsia {
+  color: var(--accent-2-text);
+  background: var(--accent-2-soft);
+}
+
+.chip-amber {
+  color: var(--accent-3-text);
+  background: var(--accent-3-soft);
 }
 
 /* Monospaced facts (dates, years, badges) ---------------------------------- */

@@ -8,6 +8,8 @@
   z-index: 10;
   border-bottom: 1px solid var(--border);
   background: var(--bg);
+  /* Subtle elevation at --shadow-card weight (polish budget ceiling). */
+  box-shadow: var(--shadow-card);
 }
 
 .headerInner {
@@ -68,6 +70,7 @@
 .themeToggle:hover {
   border-color: var(--accent-text);
   color: var(--accent-text);
+  background: var(--accent-soft);
 }
 
 /* Show the icon that matches the active theme. */

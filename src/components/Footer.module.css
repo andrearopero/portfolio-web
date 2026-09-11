@@ -10,6 +10,12 @@
   gap: var(--space-2xs);
 }
 
+.footerNote {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  margin-top: var(--space-2xs);
+}
+
 .footerName {
   font-family: var(--font-display);
   font-size: var(--text-sm);

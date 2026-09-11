@@ -1,10 +1,13 @@
 // Skills: CV-traceable chips grouped in three blocks (stats/data, programming,
 // soft skills). The groups const stays in the component, as in Skills.astro.
+// Each group carries a chip tone (violet / fuchsia / amber) — colorful but
+// AA-legible via the contrast-audited tint tokens in global.css.
 import styles from './Skills.module.css';
 
 const groups = [
   {
     title: 'Estadística y datos',
+    tone: 'violet',
     chips: [
       'Análisis estadístico',
       'Modelamiento estadístico',
@@ -15,10 +18,12 @@ const groups = [
   },
   {
     title: 'Programación',
+    tone: 'fuchsia',
     chips: ['R — programación estadística', 'Python — fundamentos'],
   },
   {
     title: 'Habilidades blandas',
+    tone: 'amber',
     chips: [
       'Trabajo en equipo',
       'Adaptabilidad',
@@ -29,6 +34,12 @@ const groups = [
     ],
   },
 ] as const;
+
+const chipToneClass = {
+  violet: '',
+  fuchsia: 'chip-fuchsia',
+  amber: 'chip-amber',
+} as const;
 
 export default function Skills() {
   return (
@@ -42,7 +53,7 @@ export default function Skills() {
               <h3>{group.title}</h3>
               <ul>
                 {group.chips.map((chip) => (
-                  <li key={chip} className="chip">
+                  <li key={chip} className={`chip ${chipToneClass[group.tone]}`.trim()}>
                     {chip}
                   </li>
                 ))}

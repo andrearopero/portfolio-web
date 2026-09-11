@@ -12,7 +12,7 @@
 
 .skillGroup h3 {
   font-size: var(--text-md);
-  margin-bottom: var(--space-2xs);
+  margin-bottom: var(--space-xs);
 }
 
 .skillGroup ul {

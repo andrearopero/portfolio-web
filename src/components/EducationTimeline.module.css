@@ -42,6 +42,14 @@
   font-size: var(--text-md);
 }
 
+/* "En curso" renders as a small tinted pill — same chip language as Skills
+   (tinted background + text-safe accent, consistent radius). */
+.statusBadge {
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: 0.15em 0.7em;
+}
+
 .statusBadge,
 .period {
   color: var(--accent-text);

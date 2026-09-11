@@ -32,6 +32,7 @@ export default function Footer() {
             ))}
           </ul>
         </nav>
+        <p className={styles.footerNote}>Portafolio profesional · Construido con React, TypeScript y Vite.</p>
       </div>
     </footer>
   );
