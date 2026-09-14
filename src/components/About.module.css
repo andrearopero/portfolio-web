@@ -1,7 +1,48 @@
 /* About styles — ported from the former Astro component's scoped <style>. */
 
+/* Portrait layout: image first on mobile, beside the text on desktop. */
+.aboutLayout {
+  display: grid;
+  gap: var(--space-m);
+  justify-items: center;
+}
+
+.portrait {
+  /* Circular crop over the tokenized emerald accent — ring + soft shadow only,
+     no new palette colors. */
+  width: 240px;
+  height: 240px;
+  max-width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 3px var(--bg),
+    0 0 0 6px var(--accent),
+    0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 48rem) {
+  .aboutLayout {
+    grid-template-columns: 340px 1fr;
+    align-items: center;
+    justify-items: start;
+  }
+
+  .portrait {
+    width: 340px;
+    height: 340px;
+  }
+}
+
 .aboutBody {
   max-width: var(--measure);
   display: grid;
   gap: var(--space-m);
+  justify-items: start;
+}
+
+@media (min-width: 48rem) {
+  .aboutBody {
+    justify-items: stretch;
+  }
 }

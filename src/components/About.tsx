@@ -2,6 +2,7 @@
 // the CV (portfolio-page spec). Reflects the confirmed BSc thesis title and
 // the transition into industrial automation.
 import styles from './About.module.css';
+import portrait from '../assets/andrea-ropero.jpg';
 
 export default function About() {
   return (
@@ -9,20 +10,30 @@ export default function About() {
       <div className="container">
         <p className="section-kicker mono">02 / Sobre mí</p>
         <h2 className="section-title">De los datos a los procesos</h2>
-        <div className={styles.aboutBody}>
-          <p>
-            Soy estadística de la Universidad Nacional de Colombia. Me formé para convertir datos en
-            decisiones: explorarlos con rigor, reconocer su calidad y sus límites, y construir
-            modelos que sostengan conclusiones que valgan la pena defender. Mi trabajo de grado
-            aplicó el análisis de supervivencia a la deserción estudiantil en la Universidad
-            Nacional de Colombia, Sede De La Paz.
-          </p>
-          <p>
-            Hoy estoy cursando la Maestría en Automatización Industrial, donde esa base cuantitativa
-            encuentra un terreno nuevo: procesos reales que se pueden medir, monitorear y mejorar.
-            Mi meta es que los datos no solo expliquen lo que pasó, sino que ayuden a operar mejor
-            lo que viene.
-          </p>
+        <div className={styles.aboutLayout}>
+          <img
+            src={portrait}
+            alt="Retrato profesional de Andrea Carolina Ropero Lozano, estadística"
+            className={styles.portrait}
+            loading="lazy"
+            width={800}
+            height={1066}
+          />
+          <div className={styles.aboutBody}>
+            <p>
+              Soy estadística de la Universidad Nacional de Colombia. Me formé para convertir datos en
+              decisiones: explorarlos con rigor, reconocer su calidad y sus límites, y construir
+              modelos que sostengan conclusiones que valgan la pena defender. Mi trabajo de grado
+              aplicó el análisis de supervivencia a la deserción estudiantil en la Universidad
+              Nacional de Colombia, Sede De La Paz.
+            </p>
+            <p>
+              Hoy estoy cursando la Maestría en Automatización Industrial, donde esa base cuantitativa
+              encuentra un terreno nuevo: procesos reales que se pueden medir, monitorear y mejorar.
+              Mi meta es que los datos no solo expliquen lo que pasó, sino que ayuden a operar mejor
+              lo que viene.
+            </p>
+          </div>
         </div>
       </div>
     </section>

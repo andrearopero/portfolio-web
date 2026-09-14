@@ -15,3 +15,7 @@ dist/
 # Local workspace scaffolding — project planning artifacts, not site source
 .atl/
 openspec/
+
+# Private working files — owner portrait original must never enter git history
+# The optimized copy (src/assets/andrea-ropero.jpg) IS committed instead.
+foto.png
