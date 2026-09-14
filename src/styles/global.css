@@ -2,32 +2,29 @@
    portfolio-web — design tokens & base styles
    Site copy is Spanish; identifiers and comments stay in English.
 
-   Vibrant violet–fuchsia palette (user decision 2026-09-11, supersedes
-   Andean Emerald). Accent discipline: neutrals dominate ~70–80% of visible
-   surface; accents are allowed ONLY on:
+   Andean Emerald palette (user decision 2026-09-14, restored; supersedes
+   the 2026-09-11 violet/fuchsia interlude). Accent discipline: neutrals
+   dominate ~70–80% of visible surface; accents are allowed ONLY on:
      - text links (color)
      - skill chips (text + soft tinted background)
      - section numbering / kickers (color)
      - hover & focus-visible states (color, border, underline)
      - timeline markers
      - primary CTA button (filled)
-     - the hero name (Hero.module.css) carries the ONE violet→fuchsia
-       gradient highlight allowed per viewport
+     - the hero name (Hero.module.css) carries the ONE emerald gradient
+       highlight allowed per viewport
    Everything else is neutral surface.
 
    Contrast audit (WCAG AA, computed WCAG 2.x relative luminance):
-     LIGHT theme (bg #F6F5FC / surface #FFFFFF)
-       violet  #7C3AED  5.26 / 5.70 :1  (AA body ✓)
-       violet-strong #6D28D9  6.56 / 7.10 :1
-       fuchsia #C2186B  5.33 / 5.77 :1  (AA body ✓; #DB2777 raw = 4.24 on bg,
-                                         below 4.5 — darkened for text use)
-       amber-as-text #B45309  4.64 / 5.02 :1  (raw #F59E0B = 1.98 — NEVER use
-                                         raw amber as text on light bg)
-     DARK theme (bg #111C2E / surface #1A2740)
-       violet  #A78BFA  6.28 / 5.48 :1  (brightened variant; raw #7C3AED = 3.00)
-       fuchsia #F472B6  6.45 / 5.63 :1  (raw #DB2777 = 3.72)
-       amber   #FBBF24 10.23 / 8.93 :1  (raw #F59E0B = 7.95, also passes)
-       ink 14.17, muted 7.67 :1 on bg
+      LIGHT theme (bg #FAF9F6 / surface #FFFFFF)
+        accent       #0E7C7B  4.76 / 5.01 :1  (AA body ✓)
+        accent hover #0A5F5E  7.09 / 7.49 :1
+      DARK theme (bg #101917 / surface #1A2420)
+        accent       #4CC9C0  8.89 :1 on bg
+        accent hover #7FD9D3  >8.89 :1 on bg (lighter)
+        chip tint alphas stay low so accent text over the tinted surface
+        keeps AA; on-accent ink in dark is #101917 (8.89:1 on #4CC9C0).
+        ink/muted neutrals are ≥ 7:1 on bg in both themes.
    ========================================================================== */
 
 :root {
@@ -59,31 +56,31 @@
   --space-xl: 4rem;
   --space-2xl: 6.5rem;
 
-  /* Palette — violet / fuchsia / amber (base values) */
-  --accent: #7C3AED;        /* electric violet — primary accent */
-  --accent-2: #DB2777;      /* fuchsia — secondary accent (decorative/gradient use) */
-  --accent-3: #F59E0B;      /* amber — tertiary support (large/decorative use) */
+  /* Palette — Andean Emerald (base values) */
+  --accent: #0E7C7B;        /* emerald — primary accent (light theme) */
 
-  /* Decorative gradient token — the single allowed violet→fuchsia highlight */
-  --gradient-accent: linear-gradient(100deg, #7C3AED 0%, #DB2777 100%);
+  /* Decorative gradient token — the single allowed emerald highlight */
+  --gradient-accent: linear-gradient(100deg, #0E7C7B 0%, #4CC9C0 100%);
 
-  /* Light theme: soft lavender-tinted background, white surfaces */
-  --bg: #F6F5FC;
+  /* Light theme: warm paper background, white surfaces */
+  --bg: #FAF9F6;
   --surface: #FFFFFF;
-  --border: #E3E1F0;
-  --ink: #23263B;
-  --ink-strong: #14162A;
-  --muted: #5D6480;
+  --border: #E8E6DF;
+  --ink: #262B28;
+  --ink-strong: #171B19;
+  --muted: #5C635F;
 
-  /* Text-safe accent variants (see contrast audit above) */
-  --accent-text: #7C3AED;       /* 5.26:1 on bg — links, chips, kickers */
-  --accent-strong: #6D28D9;     /* 6.56:1 on bg — hovers */
-  --accent-2-text: #C2186B;     /* 5.33:1 on bg — fuchsia text variant */
-  --accent-3-text: #B45309;     /* 4.64:1 on bg — amber text variant */
-  --accent-soft: rgba(124, 58, 237, 0.08);
-  --accent-2-soft: rgba(219, 39, 119, 0.1);   /* chip tint: #C2186B ≈ 5.0:1 */
-  --accent-3-soft: rgba(245, 158, 11, 0.1);   /* chip tint: #B45309 ≈ 4.7:1 */
-  --on-accent: #FFFFFF;         /* 5.70:1 on #7C3AED */
+  /* Text-safe accent variants (see contrast audit above).
+     The former violet/fuchsia/amber chip tones now map to the SINGLE
+     emerald accent with varying tint intensities — not a rainbow. */
+  --accent-text: #0E7C7B;       /* 4.76:1 on bg — links, kickers */
+  --accent-strong: #0A5F5E;     /* 7.09:1 on bg — hovers */
+  --accent-2-text: #0A5F5E;     /* chip tone 2 — darker emerald for AA text on tint */
+  --accent-3-text: #0A5F5E;     /* chip tone 3 — darker emerald for AA text on tint */
+  --accent-soft: rgba(14, 124, 123, 0.08);
+  --accent-2-soft: rgba(14, 124, 123, 0.12);  /* chip tint 2 */
+  --accent-3-soft: rgba(14, 124, 123, 0.16);  /* chip tint 3 */
+  --on-accent: #FFFFFF;         /* 5.01:1 on #0E7C7B */
 
   --shadow-card: 0 1px 2px rgba(20, 22, 42, 0.05), 0 8px 24px rgba(20, 22, 42, 0.07);
 
@@ -97,28 +94,27 @@
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  /* Dark theme: deep night-blue background (NOT pure black) */
-  --bg: #111C2E;
-  --surface: #1A2740;
-  --border: #2B3A57;
-  --ink: #E6EAF2;
-  --ink-strong: #F5F7FC;
-  --muted: #A3AEC6;
+  /* Dark theme: deep emerald-charcoal background (NOT pure black) */
+  --bg: #101917;
+  --surface: #1A2420;
+  --border: #2C3B34;
+  --ink: #E4EAE6;
+  --ink-strong: #F4F7F4;
+  --muted: #A2ADA7;
 
   /* Brightened accent variants for dark surfaces (see contrast audit above) */
-  --accent-text: #A78BFA;       /* 6.28:1 on bg */
-  --accent-strong: #C4B5FD;     /* hovers */
-  --accent-2-text: #F472B6;     /* 6.45:1 on bg */
-  --accent-3-text: #FBBF24;     /* 10.23:1 on bg */
-  /* Tint alphas kept low so accent text over the tinted surface stays AA
-     (violet/fuchsia at 0.1 ≈ 4.6–4.7:1, amber at 0.12 ≈ 6.9:1). */
-  --accent-soft: rgba(167, 139, 250, 0.1);
-  --accent-2-soft: rgba(244, 114, 182, 0.1);
-  --accent-3-soft: rgba(251, 191, 36, 0.12);
-  --on-accent: #FFFFFF;         /* on #A78BFA as filled button: use dark ink? No —
-                                   filled CTA in dark uses gradient; see .btn-primary */
+  --accent: #4CC9C0;            /* filled CTA background in dark */
+  --accent-text: #4CC9C0;       /* 8.89:1 on bg */
+  --accent-strong: #7FD9D3;     /* hovers — lighter derivative */
+  --accent-2-text: #4CC9C0;     /* chip tone 2 */
+  --accent-3-text: #7FD9D3;     /* chip tone 3 — brighter tint */
+  /* Tint alphas kept low so accent text over the tinted surface stays AA. */
+  --accent-soft: rgba(76, 201, 192, 0.1);
+  --accent-2-soft: rgba(76, 201, 192, 0.14);
+  --accent-3-soft: rgba(127, 217, 211, 0.14);
+  --on-accent: #101917;         /* 8.89:1 on #4CC9C0 — dark ink on bright teal */
 
-  --gradient-accent: linear-gradient(100deg, #A78BFA 0%, #F472B6 100%);
+  --gradient-accent: linear-gradient(100deg, #4CC9C0 0%, #7FD9D3 100%);
 
   --shadow-card: 0 1px 2px rgba(3, 8, 20, 0.35), 0 8px 24px rgba(3, 8, 20, 0.4);
 }
@@ -248,11 +244,11 @@ a:hover {
     border-color var(--speed) var(--ease), color var(--speed) var(--ease);
 }
 
-/* Primary CTA: solid violet fill (white on #7C3AED = 5.70:1 — AA body-size,
-   better than the former gradient midpoint's 3.6:1). Since S2 the single
-   violet→fuchsia gradient highlight per viewport is the hero name
-   (Hero.module.css); keeping the CTA solid preserves the one-gradient-per-
-   viewport accent discipline. */
+/* Primary CTA: solid emerald fill (white on #0E7C7B = 5.01:1 light — AA
+   body-size; dark theme fills with #4CC9C0 and uses the dark ink token,
+   8.89:1 — see the dark-theme values). Since S2 the single gradient
+   highlight per viewport is the hero name (Hero.module.css); keeping the
+   CTA solid preserves the one-gradient-per-viewport accent discipline. */
 .btn-primary {
   background: var(--accent);
   color: var(--on-accent);
@@ -285,9 +281,10 @@ a:hover {
   padding: 0.25em 0.85em;
 }
 
-/* Colorful chip variants — tinted background + text-safe accent variant,
-   both contrast-audited per theme (see token comments). Same radius and
-   padding as the default chip: one chip language, three accents. */
+/* Chip tone variants — same single emerald accent at varying tint
+   intensities (NOT a rainbow): text uses the darker/brighter emerald
+   variants above, background uses the matching tint alpha. Same radius and
+   padding as the default chip: one chip language, one hue. */
 .chip-fuchsia {
   color: var(--accent-2-text);
   background: var(--accent-2-soft);

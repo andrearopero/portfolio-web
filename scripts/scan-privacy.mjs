@@ -8,12 +8,13 @@
 // with fixed paths: no user input, no shell composition (threat matrix:
 // build scripts).
 //
-// Privacy amendment 2026-09-11: the professional phone +57 322 799 9411 is
-// now an approved secondary contact channel, and the peer-reviewed
+// Privacy amendment 2026-09-11 (REVOKED 2026-09-14): the professional phone
+// +57 322 799 9411 was briefly an approved secondary channel and its needles
+// were removed; the user's binding decision now PROHIBITS publishing the
+// personal number, so the phone needles are restored. The peer-reviewed
 // publication legitimately contains the author names that share tokens with
-// the reference block ("Bru", "Cordero", "Osnamir", "Elias"). Those six
-// needles were removed; the reference block itself stays hard-protected via
-// its email and its own phone number.
+// the reference block ("Bru", "Cordero", "Osnamir", "Elias"); those author
+// name needles stay removed (no match against legitimate publication text).
 //
 // S3 completion: the cédula, birth date/place, and residential address
 // needles were absent from the original file; the amended portfolio-privacy
@@ -53,6 +54,8 @@ const NEEDLES = [
   { label: 'reference phone de-spaced "3165000"', norm: '3165000' },
   // Personal identity data.
   { label: 'personal email "andrearopero1520@gmail.com"', re: /andrearopero1520@gmail\.com/i },
+  { label: 'personal phone "322 799 9411"', re: /322[\s-]*799[\s-]*9411/ },
+  { label: 'personal phone de-spaced "3227999411"', norm: '3227999411' },
   { label: 'cédula "1003239904"', re: /1003239904/ },
   { label: 'birth date "2003-04-15"', re: /2003\s*[-/.]\s*04\s*[-/.]\s*15/ },
   { label: 'birth date de-dashed "20030415"', norm: '20030415' },

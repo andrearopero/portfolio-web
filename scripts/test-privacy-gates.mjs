@@ -4,12 +4,12 @@
 //
 // Builds throwaway dist-like fixtures in a temp directory and proves:
 //   RED  — every prohibited PII class makes scan-privacy.mjs exit 1
-//          (reference block, personal email, cédula, birth data, address,
-//          CV markers) and a TODO-URL marker makes check-placeholders.mjs
-//          exit 1;
-//   GREEN — a fixture carrying the APPROVED content (secondary phone
-//          +57 322 799 9411 and the publication author list, which shares
-//          tokens with the reference block) exits 0: no false positives.
+//          (reference block, personal email, personal phone, cédula, birth
+//          data, address, CV markers) and a TODO-URL marker makes
+//          check-placeholders.mjs exit 1;
+//   GREEN — a fixture carrying the APPROVED content (the publication author
+//          list, which shares tokens with the reference block) exits 0: no
+//          false positives.
 //
 // Zero dependencies, Node >= 18. Fixture dirs live in os.tmpdir() and are
 // always removed; the real dist/ is never touched. Read-only with respect
@@ -33,7 +33,19 @@ const RED_CASES = [
   { label: 'reference phone "316 5000"', content: 'tel ref 316 5000' },
   { label: 'reference phone de-spaced "3165000"', content: 'id 3165000' },
   { label: 'personal email "andrearopero1520@gmail.com"', content: 'mail: andrearopero1520@gmail.com' },
+  // Privacy decision 2026-09-14: the personal phone is prohibited again
+  // (its 2026-09-11 "approved channel" amendment was revoked), so both
+  // written variants are RED cases now.
+  {
+    label: 'personal phone "322 799 9411"',
+    content: 'Teléfono profesional: +57 322 799 9411',
+  },
+  {
+    label: 'personal phone tel link "tel:+573227999411"',
+    content: '<a href="tel:+573227999411">Llamar</a>',
+  },
   { label: 'cédula "1003239904"', content: 'CC 1003239904' },
+
   { label: 'birth date "2003-04-15"', content: 'nacimiento 2003-04-15' },
   { label: 'birth place "VALLEDUPAR"', content: 'ciudad: VALLEDUPAR' },
   { label: 'address "calle #4-17"', content: 'dirección: calle #4-17' },
@@ -53,11 +65,11 @@ const RED_PLACEHOLDER_CASE = {
   content: `export const x = "TODO-URL-${'TEST'}";`,
 };
 
-// GREEN: the approved content that MUST pass — the secondary contact phone
-// (privacy amendment 2026-09-11) and the confirmed publication author list
-// whose tokens were removed from the needle set.
+// GREEN: approved content that MUST pass — the confirmed publication author
+// list whose tokens were removed from the needle set. The personal phone is
+// NOT green anymore (privacy decision 2026-09-14): it is covered by the RED
+// cases above.
 const GREEN_CONTENT = [
-  'Teléfono profesional: +57 322 799 9411 (tel:+573227999411).',
   'Osnamir Elias Bru-Cordero, Estefania Guillen-García, John Alexander Hernández-López,',
   'Andrea Carolina Ropero-Lozano y Enrique Correa-Álvarez.',
   'Ciencia en Desarrollo (UPTC) · Vol. 17, Núm. 1 · 2026.',
@@ -115,7 +127,7 @@ await withTempSource(RED_PLACEHOLDER_CASE.content, (tmp) => {
   report(result.status === 1, RED_PLACEHOLDER_CASE.label, `exit ${result.status}`);
 });
 
-console.log('GREEN — approved phone + publication author list must pass:');
+console.log('GREEN — approved publication author list must pass:');
 await withTempDist(GREEN_CONTENT, (tmp) => {
   const result = runGate(SCAN_PRIVACY, tmp);
   report(result.status === 0, 'approved phone + author list', `exit ${result.status}`);

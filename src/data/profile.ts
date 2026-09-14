@@ -11,11 +11,10 @@ export const profile = {
   positioning:
     'Del análisis estadístico y el modelamiento cuantitativo a la automatización industrial',
   email: 'aroperol@unal.edu.co',
-  // Professional phone — SECONDARY contact channel, user-approved 2026-09-11
-  // (privacy amendment: the build-time scan no longer treats it as PII).
-  // The institutional email stays the primary channel; Contact renders the
-  // phone below it as a clearly subordinate `tel:` link.
-  phone: '+57 322 799 9411',
+  // NOTE (privacy decision 2026-09-14): no phone field by design — the
+  // personal number is NOT published on the site and hard-fails the
+  // build-time privacy scan. Contact channels: institutional email,
+  // GitHub, LinkedIn (links below).
   links: {
     // Confirmed by the user on 2026-09-10.
     github: 'https://github.com/andrearopero',
